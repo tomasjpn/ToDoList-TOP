@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        <!-- Button für das Anzeigen des Angabefelds-->
+        <button id="show-input-btn">Neue Aufgabe hinzufügen</button>
+
+        <!--Container  für das Eingabefeld und den Button-->
+        <div id="input-container" style="display: none">
+            <form id="add-task-form">
+                <label for="task">Neue Aufgabe:</label>
+                <input type="text" id="task" name="task"required>
+                <button type="submit">Hinzufügen</button>
+            </form>
+        </div>
+
+        <!--Container für die ToDo Liste-->
+        <div id="todo-list-container">
+            <h2>ToDo List</h2>
+            <ul id="todo-list">
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
