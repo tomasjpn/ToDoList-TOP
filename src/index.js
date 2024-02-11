@@ -1,3 +1,11 @@
-const { addInput } = require("./deleteAndAdd");
+import { addInput } from "./deleteAndAdd";
+import { displayAddTask } from "./displayAddTask";
 
-addInput();
+// Wenn der Submit Button betätigt wird, dann soll addInput Funktion aufgerufen werden
+const addTaskForm = document.getElementById("add-task-form");
+addTaskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    addInput(true);
+});
+
+displayAddTask();
