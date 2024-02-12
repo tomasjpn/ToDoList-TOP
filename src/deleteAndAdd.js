@@ -1,3 +1,5 @@
+import { editTask } from "./edit";
+
 export function addInput (){
     // Inhalt aus dem  Eingabefeld ToDo Listen Container werden geholt
     const inputValue = document.getElementById("task");
@@ -6,6 +8,7 @@ export function addInput (){
 
     //Erstellen des Listenelement li
     const createLiElm = document.createElement("li");
+    createLiElm.id = "listElm"
     if ("fromForm") {
     
 
@@ -34,6 +37,7 @@ export function addInput (){
         
     }
 
+    editTask();
     deleteInput();
 
 
