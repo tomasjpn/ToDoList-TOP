@@ -24,6 +24,7 @@ export const editTask = ()=>{
         saveChangesBtn.textContent = "Speichern";
         listElm.appendChild(saveChangesBtn)
 
+        // Der vorhandene Listen Eintrag wird durch Input Eingabe ersetzt, dannach verschwinden die Buttons
         function saveChanges () {
             const newText = inputField.value.trim();
             listElm.textContent = newText;
@@ -32,7 +33,9 @@ export const editTask = ()=>{
             listElm.removeChild(saveChangesBtn);
         }
 
+        // Speicherbutton angedrückt -> function saveChanges
         saveChangesBtn.addEventListener("click", saveChanges);
+        // Eingabefeld bei Betätigen vom Enter -> function saveChanges
         inputField.addEventListener("keydown",(event)=>{
             if (event.key === "Enter") {
                 saveChanges();
@@ -40,5 +43,7 @@ export const editTask = ()=>{
 
         });
     });
+
+    //Edit button wird hinzugefügt zur der Liste
     listElm.appendChild(editBtn);
 } 
