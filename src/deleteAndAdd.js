@@ -8,7 +8,8 @@ export function addInput (){
 
     //Erstellen des Listenelement li
     const createLiElm = document.createElement("li");
-    createLiElm.id = "listElm"
+    const uniqueId = Date.now();
+    createLiElm.id = `listElm-${uniqueId}`;
     if ("fromForm") {
     
 
@@ -20,25 +21,27 @@ export function addInput (){
     inputValue.value = "";
 
 
+    // Hinzufügen Button wird entfernt
     addTaskForm.style.display = "none";
     }
 
 
 
-    // Delete Button
-    const deleteInput = () => {
 
+    
+    function DeleteButton(createLiElm) {
+        // Erstellt den Löschen-Button
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "löschen"
+        deleteBtn.textContent = "löschen";
         createLiElm.appendChild(deleteBtn);
-        deleteBtn.addEventListener("click", ()=>{
+    
+        // Fügt dem Löschen-Button einen Event-Listener hinzu
+        deleteBtn.addEventListener("click", () => {
             listTodo.removeChild(createLiElm);
-        })
-        
+        });
     }
-
-    editTask();
-    deleteInput();
+    DeleteButton(createLiElm);
+    editTask(`listElm-${uniqueId}`);
 
 
 }

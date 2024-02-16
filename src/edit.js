@@ -1,5 +1,5 @@
-export const editTask = ()=>{
-    const listElm = document.getElementById("listElm");
+export const editTask = (elementId)=>{
+    const listElm = document.getElementById(elementId);
 
     //Edit Button wird erstellt
     const editBtn = document.createElement("button");
