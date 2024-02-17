@@ -6,6 +6,7 @@ export function displayAddTask () {
     const inputContainer = document.getElementById("input-container");
     const addTaskForm = document.getElementById("add-task-form");
     InputExtension();
+    
 
     
     showInputBtn.addEventListener("click",()=>{ 

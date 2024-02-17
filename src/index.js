@@ -1,3 +1,5 @@
+
+import { detailsButton } from "./2_Field_Date";
 import { addInput } from "./deleteAndAdd";
 import { displayAddTask } from "./displayAddTask";
 
@@ -7,5 +9,6 @@ addTaskForm.addEventListener("submit", (event) => {
     event.preventDefault();
     addInput(true);
 });
+
 
 displayAddTask();

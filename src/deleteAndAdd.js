@@ -20,7 +20,7 @@ export function addInput (){
     
 
     // Listenelement li = Input Value
-    createLiElm.textContent = `${inputValue.value}-${taskDetail.value}-${taskDate.value}`;
+    createLiElm.textContent = `${inputValue.value}-${taskDate.value}`;
     listTodo.appendChild(createLiElm);
     
     //Eingabefeld wird geleert
@@ -30,9 +30,6 @@ export function addInput (){
     // Hinzufügen Button wird entfernt
     addTaskForm.style.display = "none";
     }
-
-
-
 
     
     function DeleteButton(createLiElm) {

@@ -20,17 +20,30 @@ export function InputExtension () {
     }); 
 }
 
-export function detailsButton (elementId){
+//Button für Details
+export function detailsButton(elementId) {
     const listElm = document.getElementById(elementId);
+    const descriptionInput = document.getElementById("task-description");
+
+    // Erstellt ein Element zur Anzeige der Details
+    const descriptionDisplay = document.createElement("span"); 
+    descriptionDisplay.id = "description-display";
+
+    descriptionDisplay.style.display = "none"; // Versteckt das Anzeigeelement anfangs
+    listElm.appendChild(descriptionDisplay);
+
     const descriptionBtn = document.createElement("button");
-    const descriptionInput = document.get("")
-        descriptionBtn.id = "desc-btn";
-        descriptionBtn.textContent = "mehr Details";
-        descriptionBtn.addEventListener("click", ()=>{
-           descriptionInput.style.display === "none" ? descriptionBtn.style.display = "block" : "none";
-        })
-
-        listElm.appendChild(descriptionBtn);
-
-
+    descriptionBtn.id = "description-btn";
+    descriptionBtn.textContent = "Mehr Details";
+    descriptionBtn.addEventListener("click", () => {
+        if (descriptionDisplay.style.display === "none") {
+            descriptionDisplay.textContent = descriptionInput.value; // Kopiert den Inhalt bei Klick
+            descriptionDisplay.style.display = "block";
+            descriptionBtn.textContent = "Weniger anzeigen" // Zeigt die Details an
+        } else {
+            descriptionDisplay.style.display = "none";
+            descriptionBtn.textContent = "Mehr Details" // Versteckt die Details wieder
+        }
+    });
+    listElm.appendChild(descriptionBtn);
 }
