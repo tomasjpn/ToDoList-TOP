@@ -1,3 +1,4 @@
+import { detailsButton } from "./2_Field_Date";
 import { editTask } from "./edit";
 
 export function addInput (){
@@ -5,6 +6,11 @@ export function addInput (){
     const inputValue = document.getElementById("task");
     const listTodo = document.getElementById("todo-list");
     const addTaskForm = document.getElementById("add-task-form");
+
+    //Zweites Eingabefeld mit Datum Eingabefeld
+    const taskDetail = document.getElementById("task-description");
+    const taskDate = document.getElementById("task-date");
+    
 
     //Erstellen des Listenelement li
     const createLiElm = document.createElement("li");
@@ -14,7 +20,7 @@ export function addInput (){
     
 
     // Listenelement li = Input Value
-    createLiElm.textContent = inputValue.value;
+    createLiElm.textContent = `${inputValue.value}-${taskDetail.value}-${taskDate.value}`;
     listTodo.appendChild(createLiElm);
     
     //Eingabefeld wird geleert
@@ -42,6 +48,7 @@ export function addInput (){
     }
     DeleteButton(createLiElm);
     editTask(`listElm-${uniqueId}`);
+    detailsButton (`listElm-${uniqueId}`);
 
 
 }
