@@ -1,5 +1,5 @@
 
-import { detailsButton } from "./2_Field_Date";
+import { createCategory } from "./CreateCategory/newCategory";
 import { addInput } from "./deleteAndAdd";
 import { displayAddTask } from "./displayAddTask";
 
@@ -12,3 +12,4 @@ addTaskForm.addEventListener("submit", (event) => {
 
 
 displayAddTask();
+createCategory();

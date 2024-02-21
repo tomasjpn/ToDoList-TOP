@@ -1,7 +1,6 @@
 export const editTask = (elementId)=>{
     const listElm = document.getElementById(elementId);
-    const taskDetail = document.getElementById("task-description");
-    const taskDate = document.getElementById("task-date");
+    
 
     //Edit Button wird erstellt
     const editBtn = document.createElement("button");
