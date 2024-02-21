@@ -36,6 +36,7 @@ export function detailsButton(elementId) {
     descriptionBtn.id = "description-btn";
     descriptionBtn.textContent = "Mehr Details";
     descriptionBtn.addEventListener("click", () => {
+        
         if (descriptionDisplay.style.display === "none") {
             descriptionDisplay.textContent = descriptionInput.value; // Kopiert den Inhalt bei Klick
             descriptionDisplay.style.display = "block";
