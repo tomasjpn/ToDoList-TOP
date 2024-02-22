@@ -1,19 +1,11 @@
-import { saveToLocalStorage, loadFromLocalStorage } from '/src/localStorage.js';
+import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
+
 
 
 export function createCategory() {
 
-
     const addButton = document.getElementById("addCategory-Btn");
-
-
-    // Ursprünglichen Home-Inhalt einmalig speichern
-    let originalHomeContent = document.getElementById("todo-list-container").innerHTML;
-    // Speichere den aktuellen Home-Inhalt in localStorage
-    saveToLocalStorage(originalHomeContent);
-
     
-
     //Add-Category Button
     addButton.addEventListener("click", function() {
         // Input-Feld erstellen
@@ -33,22 +25,29 @@ export function createCategory() {
         saveAddButton.textContent = "Bestätigen";
         addButton.parentNode.insertBefore(saveAddButton, nameCategoryInput.nextSibling);
         saveAddButton.addEventListener("click", function() {
+
+            // Stellt sicher, dass nameCategoryInput nicht leer ist
             if (nameCategoryInput.value.trim() !== "") {
                 const newCategoryBtn = document.createElement("button");
                 newCategoryBtn.textContent = nameCategoryInput.value;
                 newCategoryBtn.id = `categoryBtn-${uniqueId}`;
         
                 newCategoryBtn.addEventListener("click", function(event) {
+
                     event.preventDefault();
-                    // Logik für das Klicken auf den neuen Kategorie-Button
+                    document.getElementById("todo-list").innerHTML ="";
+                    
+
                 });
         
+                // Logik für das Klicken auf den neuen Kategorie-Button
                 const homeBtn = document.getElementById("home-Btn");
                 homeBtn.parentNode.insertBefore(newCategoryBtn, homeBtn.nextElementSibling);
         
                 nameCategoryInput.remove(); // Entfernt das Eingabefeld
                 saveAddButton.remove(); // Entfernt den Save-Add-Button selbst
             }
+
         });
 
 
@@ -64,6 +63,11 @@ export function createCategory() {
                 newCategoryBtn.addEventListener("click", function(event) {
                     // Verhindert das Standardverhalten (Seitenaktualisierung) des Buttons
                     event.preventDefault();
+
+                    const currentContent = document.getElementById("todo-list").innerHTML;
+                    saveToLocalStorage(currentContent);
+
+                    document.getElementById("todo-list").innerHTML ="";
                     
                     // Input-Felder leeren
                     nameCategoryInput.value = ''; 
@@ -81,14 +85,4 @@ export function createCategory() {
         });
     });
 
-    
-
-    const homeBtn = document.getElementById("home-Btn");
-    homeBtn.addEventListener("click", function(event) {
-        // Verhindert das Standardverhalten (Seitenaktualisierung) des Buttons
-        event.preventDefault();
-        // Setze den Inhalt von #app auf den ursprünglichen Home-Inhalt zurück
-        document.getElementById("app").innerHTML = originalHomeContent;
-        
-    });
 }

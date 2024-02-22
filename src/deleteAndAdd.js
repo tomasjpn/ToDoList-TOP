@@ -1,7 +1,9 @@
 import { detailsButton } from "./2_Field_Date";
 import { editTask } from "./edit";
+import { saveToLocalStorage } from "./localStorage";
 
 export function addInput (){
+    
     // Inhalt aus dem  Eingabefeld ToDo Listen Container werden geholt
     const inputValue = document.getElementById("task");
     const listTodo = document.getElementById("todo-list");
@@ -29,6 +31,10 @@ export function addInput (){
 
     // Hinzufügen Button wird entfernt
     addTaskForm.style.display = "none";
+    
+    //Speichern des derzeitigen Inhalts
+    const currentContent = listTodo.innerHTML;
+    saveToLocalStorage(currentContent);
     }
 
     
@@ -42,6 +48,10 @@ export function addInput (){
         deleteBtn.addEventListener("click", () => {
             listTodo.removeChild(createLiElm);
         });
+
+        //Speichern des derzeitigen Inhalts
+        const currentContent = listTodo.innerHTML;
+        saveToLocalStorage(currentContent);
     }
     DeleteButton(createLiElm);
     editTask(`listElm-${uniqueId}`);

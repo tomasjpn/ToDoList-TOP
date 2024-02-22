@@ -14,4 +14,5 @@ export function displayAddTask () {
         addTaskForm.style.display="block"; // Wird angezeigt, wenn der "Neue Aufgabe hinzufügen" Button betätigt wird
         
     });
+    
 }
