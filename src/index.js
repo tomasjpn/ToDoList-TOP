@@ -1,4 +1,3 @@
-
 import { createCategory } from "./CreateCategory/newCategory";
 import { addInput } from "./deleteAndAdd";
 import { displayAddTask } from "./displayAddTask";

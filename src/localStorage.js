@@ -11,8 +11,3 @@ export function loadFromLocalStorage() {
     }
     return null;
 }
-
-export function updateCategories(newCategory) {
-     const categories = JSON.parse(localStorage.getItem('categories')) || [];
-        categories.push(newCategory);
-}

@@ -72,4 +72,4 @@ export const editTask = (elementId)=>{
     });
     //Edit button wird hinzugefügt zur der Liste
     listElm.appendChild(editBtn);
-} 
+}
