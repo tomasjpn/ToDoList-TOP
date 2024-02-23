@@ -1,13 +1,10 @@
 // Funktion zum Speichern der Projekte (und Todos) in localStorage
-export function saveToLocalStorage(data) {
-    localStorage.setItem('todoList', JSON.stringify(data));
+export function saveToLocalStorage(todoItems) {
+    localStorage.setItem('todoList', JSON.stringify(todoItems));
 }
 
 // Funktion zum Laden der Daten aus localStorage beim ersten Laden der App
 export function loadFromLocalStorage() {
     const savedContent = localStorage.getItem('todoList');
-    if (savedContent) {
-        return JSON.parse(savedContent);
-    }
-    return null;
+    return savedContent ? JSON.parse(savedContent) : null;
 }

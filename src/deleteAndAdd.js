@@ -42,6 +42,7 @@ export function addInput (){
         // Erstellt den Löschen-Button
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "löschen";
+        deleteBtn.id = "deleteTask-btn"
         createLiElm.appendChild(deleteBtn);
     
         // Fügt dem Löschen-Button einen Event-Listener hinzu

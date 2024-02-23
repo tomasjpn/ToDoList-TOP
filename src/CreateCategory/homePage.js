@@ -1,3 +1,4 @@
+
 import { loadFromLocalStorage } from "../localStorage";
 
 
@@ -14,7 +15,8 @@ export function homePage () {
 
         } else {
             document.getElementById("todo-list").innerHTML = "<p>Keine Todos gefunden. Füge einige hinzu!</p>";
-        }
-        
+        }        
     });
+
+    
 }
