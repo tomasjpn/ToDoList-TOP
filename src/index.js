@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function (){
 })
 
 document.addEventListener("DOMContentLoaded", function (){
-    refreshTodos();
+    refreshTodos(document.getElementById("todo-list"));
 })
 
 

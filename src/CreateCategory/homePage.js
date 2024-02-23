@@ -1,8 +1,11 @@
 
 import { loadFromLocalStorage } from "../localStorage";
+import { loadTodoItems, refreshTodos } from "./loadTodoItems";
 
 
 export function homePage () {
+
+    const listElm = document.getElementById("todo-list");
 
     const homeBtn = document.getElementById("home-Btn");
     homeBtn.addEventListener("click", function(event) {
@@ -16,7 +19,12 @@ export function homePage () {
         } else {
             document.getElementById("todo-list").innerHTML = "<p>Keine Todos gefunden. Füge einige hinzu!</p>";
         }        
+
+
+        loadTodoItems();
+        refreshTodos(listElm);
     });
 
     
 }
+

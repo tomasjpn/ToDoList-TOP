@@ -5,6 +5,7 @@ import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 export function createCategory() {
 
     const addButton = document.getElementById("addCategory-Btn");
+    const uniqueId = Date.now();
     
     //Add-Category Button
     addButton.addEventListener("click", function() {
@@ -12,7 +13,6 @@ export function createCategory() {
         const nameCategoryInput = document.createElement("input");
         nameCategoryInput.type = "text";
         nameCategoryInput.placeholder = "Name der Category";
-        const uniqueId = Date.now();
         nameCategoryInput.id = `category-${uniqueId}`;
 
         // Fügt das Input-Feld direkt nach dem Add-Category-Button ein
@@ -54,6 +54,10 @@ export function createCategory() {
         // Listener für die Eingabetaste im Input-Feld
         nameCategoryInput.addEventListener("keypress", function(e) {
             if (e.key === "Enter" && e.target.value.trim() !== "") {
+
+                const currentContent = document.getElementById("todo-list").innerHTML;
+                saveToLocalStorage(currentContent);
+                
                 // Erstellt einen neuen Button für die Kategorie
                 const newCategoryBtn = document.createElement("button");
                 newCategoryBtn.textContent = e.target.value;
@@ -63,9 +67,6 @@ export function createCategory() {
                 newCategoryBtn.addEventListener("click", function(event) {
                     // Verhindert das Standardverhalten (Seitenaktualisierung) des Buttons
                     event.preventDefault();
-
-                    const currentContent = document.getElementById("todo-list").innerHTML;
-                    saveToLocalStorage(currentContent);
 
                     document.getElementById("todo-list").innerHTML ="";
                     
@@ -78,9 +79,9 @@ export function createCategory() {
                 homeBtn.parentNode.insertBefore(newCategoryBtn, homeBtn.nextElementSibling);
 
                 
-
                 // Stellt sicher, dass das Input-Feld nach der Verwendung entfernt wird
                 e.target.remove();
+                saveAddButton.remove();
             }
         });
     });
