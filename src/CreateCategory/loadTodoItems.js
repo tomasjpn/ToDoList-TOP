@@ -3,8 +3,9 @@ import { editTask } from "../edit";
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 
 
+let todosItems = loadFromLocalStorage();
 export function loadTodoItems () {
-    let todosItems = loadFromLocalStorage();
+    
 
     //Die InputWerte des Eintrags werden in einem Objekt gespeichert
     const todoItemsObj = {
@@ -34,7 +35,7 @@ export function refreshTodos(todosItemsInput) {
     }
 
 
-    // iterriert über das Array und fügt ein li - Element mit dem Titel und Datum
+    // Iterriert über das Array und fügt ein li - Element mit dem Titel und Datum
     todosItemsInput.forEach((todo) =>{
         const item = document.createElement("li");
         item.textContent = `${todo.title} - ${todo.date}`;
@@ -70,7 +71,7 @@ export function refreshTodos(todosItemsInput) {
 
         // Bearbeitete Einträge speichern
         const saveChangesBtn = document.createElement("button");
-        saveChangesBtn.textContent = "Save";
+        saveChangesBtn.textContent = "Speichern";
         item.appendChild(saveChangesBtn);
 
         function saveChanges() {
@@ -79,12 +80,28 @@ export function refreshTodos(todosItemsInput) {
         todo.details = inputFieldDetail.value.trim();
         todo.date = inputFieldDate.value.trim();
 
-        // Rebuild von der  Liste mit updated data
-        refreshTodos(todosItems);
+        // Der alte Inhalt wird durch den neuen Inhalt ersetzt
+        item.textContent = todo.title;
+        item.textContent += " " + todo.details;
+        item.textContent += " " + todo.date;
 
         // Speichern der updated data in Local Storage
-        saveToLocalStorage(todosItems);
+        const updatedTodos = todosItems.map(t => t.id === todo.id ? todo : t);
+    saveToLocalStorage(updatedTodos);
+
+        // Rebuild von der  Liste mit updated data
+        refreshTodos(todosItems);
         }
+
+        saveChangesBtn.addEventListener("click", saveChanges);
+        
+        inputField.addEventListener("keydown",(event)=>{
+            if(event.key ==="Enter"){
+                saveChanges();
+            }
+        })
+
+        
 
         // Event Listener für save changes button
         saveChangesBtn.addEventListener("click", saveChanges);
@@ -111,10 +128,33 @@ export function refreshTodos(todosItemsInput) {
         })
         item.appendChild(deleteBtn);
 
+
+
+        // Button für Details
+        const descriptionInput = document.getElementById("task-description");
+
+        // Erstellt ein Element zur Anzeige der Details
+        const descriptionDisplay = document.createElement("span"); 
+        descriptionDisplay.id = "description-display"
+        
+        descriptionDisplay.style.display = "none"; // Versteckt das Anzeigeelement anfangs;
+        item.appendChild(descriptionDisplay);
+
+        // Mehr Details Button
         const descriptionBtn = document.createElement("button");
         descriptionBtn.textContent = "Details";
+        descriptionBtn.addEventListener("click",()=>{
+            if (descriptionDisplay.style.display === "none") {
+                descriptionDisplay.textContent = descriptionInput.value; // Kopiert den Inhalt bei Klick
+                descriptionDisplay.style.display = "block";
+                descriptionBtn.textContent = "Weniger anzeigen" // Zeigt die Details an
+            } else {
+                descriptionDisplay.style.display = "none";
+                descriptionBtn.textContent = "Mehr Details" // Versteckt die Details wieder
+            }
 
-        descriptionBtn.addEventListener("click",()=> detailsButton(todo.id) );
+
+        });
         item.appendChild(descriptionBtn);
 
         todoList.appendChild(item);
