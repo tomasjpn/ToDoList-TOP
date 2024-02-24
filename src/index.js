@@ -16,12 +16,20 @@ addTaskForm.addEventListener("submit", (event) => {
 document.addEventListener("DOMContentLoaded", function (){
     const savedContent = loadFromLocalStorage();
     if(savedContent){
-        document.getElementById("todo-list").innerHTML = savedContent;
+        document.getElementById("todo-list").innerHTML = savedContent; 
     }
 })
 
 document.addEventListener("DOMContentLoaded", function (){
-    refreshTodos(document.getElementById("todo-list"));
+    const savedContent = loadFromLocalStorage();
+    // Angenommen, loadFromLocalStorage gibt ein Array von Todos zurück
+    if (Array.isArray(savedContent) && savedContent.length > 0) {
+        // Stellt sicher, dass refreshTodos korrekt aufgerufen wird
+        refreshTodos(savedContent);
+    } else {
+        // Wenn kein Inhalt geladen wurde oder es kein Array ist, handle den Fall entsprechend
+        console.log("Keine gespeicherten Todos gefunden oder ungültiges Format.");
+    }
 })
 
 

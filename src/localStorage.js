@@ -5,8 +5,15 @@ export function saveToLocalStorage(todoItems) {
     localStorage.setItem('todoList', JSON.stringify(todoItems));
 }
 
-// Funktion zum Laden der Daten aus localStorage beim ersten Laden der App
 export function loadFromLocalStorage() {
-    const savedContent = localStorage.getItem('todoList');
-    return savedContent ? JSON.parse(savedContent) : [];
+    const data = localStorage.getItem('todos');
+    if (!data) return []; // Wenn nichts im LocalStorage ist, gib ein leeres Array zurück
+    try {
+        const parsedData = JSON.parse(data);
+        if (Array.isArray(parsedData)) return parsedData; // Stelle sicher, dass es ein Array ist
+        else return []; // Wenn geparsedData kein Array ist, gib ein leeres Array zurück
+    } catch (e) {
+        console.error('Error parsing todos from localStorage:', e);
+        return []; // Im Fehlerfall ein leeres Array zurückgeben
+    }
 }
