@@ -20,9 +20,7 @@ export function homePage () {
             document.getElementById("todo-list").innerHTML = "<p>Keine Todos gefunden. Füge einige hinzu!</p>";
         }        
 
-
         loadTodoItems();
-        refreshTodos(listElm);
     });
 
     

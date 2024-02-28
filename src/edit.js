@@ -54,10 +54,8 @@ export const editTask = (elementId)=>{
             listElm.textContent += " " + newDetail;
             listElm.textContent += " " + newDate;
 
+            
 
-            //die Input Felder sowie der Speichern Button werden entfernt
-            listElm.removeChild(inputField);
-            listElm.removeChild(saveChangesBtn);
         }
 
         // Speicherbutton angedrückt -> function saveChanges

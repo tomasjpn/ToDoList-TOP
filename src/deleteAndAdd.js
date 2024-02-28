@@ -18,12 +18,17 @@ export function addInput (){
     const createLiElm = document.createElement("li");
     const uniqueId = Date.now();
     createLiElm.id = `listElm-${uniqueId}`;
+
+    //Input Value wird in localStorage gespeichert
+    localStorage.setItem("inputValue", inputValue.value);
     if ("fromForm") {
     
 
     // Listenelement li = Input Value
     createLiElm.textContent = `${inputValue.value}-${taskDate.value}`;
     listTodo.appendChild(createLiElm);
+    saveToLocalStorage(createLiElm.innerHTML);
+    
     
     //Eingabefeld wird geleert
     inputValue.value = "";

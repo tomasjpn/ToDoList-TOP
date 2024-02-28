@@ -1,5 +1,3 @@
-import { detailsButton } from "../2_Field_Date";
-import { editTask } from "../edit";
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 
 
@@ -10,7 +8,7 @@ export function loadTodoItems () {
     //Die InputWerte des Eintrags werden in einem Objekt gespeichert
     const todoItemsObj = {
         id: Date.now(),
-        title: document.getElementById("task").value,
+        title: localStorage.getItem("inputValue"), //Zuvor gespeicherter Input Value aus dem LocalStorage
         details:document.getElementById("task-description").value,
         date: document.getElementById("task-date").value
     };
@@ -87,7 +85,7 @@ export function refreshTodos(todosItemsInput) {
 
         // Speichern der updated data in Local Storage
         const updatedTodos = todosItems.map(t => t.id === todo.id ? todo : t);
-    saveToLocalStorage(updatedTodos);
+        saveToLocalStorage(updatedTodos);
 
         // Rebuild von der  Liste mit updated data
         refreshTodos(todosItems);
@@ -98,6 +96,7 @@ export function refreshTodos(todosItemsInput) {
         inputField.addEventListener("keydown",(event)=>{
             if(event.key ==="Enter"){
                 saveChanges();
+                
             }
         })
 
@@ -145,7 +144,7 @@ export function refreshTodos(todosItemsInput) {
         descriptionBtn.textContent = "Details";
         descriptionBtn.addEventListener("click",()=>{
             if (descriptionDisplay.style.display === "none") {
-                descriptionDisplay.textContent = descriptionInput.value; // Kopiert den Inhalt bei Klick
+                descriptionDisplay.textContent = todo.details; // Text Content wird auf den eingegeben Todo Eintrag gestzt
                 descriptionDisplay.style.display = "block";
                 descriptionBtn.textContent = "Weniger anzeigen" // Zeigt die Details an
             } else {

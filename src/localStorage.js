@@ -2,7 +2,7 @@ let todosItems = loadFromLocalStorage() || [];
 
 // Funktion zum Speichern der Projekte (und Todos) in localStorage
 export function saveToLocalStorage(todoItems) {
-    localStorage.setItem('todoList', JSON.stringify(todoItems));
+    localStorage.setItem('todos', JSON.stringify(todoItems));
 }
 
 export function loadFromLocalStorage() {
