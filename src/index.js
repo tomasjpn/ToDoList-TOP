@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function (){
 })
 
 
-
 displayAddTask();
 createCategory();
 homePage();

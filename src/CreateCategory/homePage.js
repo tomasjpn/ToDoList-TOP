@@ -14,12 +14,14 @@ export function homePage () {
         // Setze den Inhalt von auf den ursprünglichen Home-Inhalt zurück
         const savedContent = loadFromLocalStorage();
         if (savedContent !==null) {
-            document.getElementById("todo-list").innerHTML =savedContent;
+            listElm.innerHTML = savedContent;
 
         } else {
-            document.getElementById("todo-list").innerHTML = "<p>Keine Todos gefunden. Füge einige hinzu!</p>";
+            listElm.innerHTML = "<p>Keine Todos gefunden. Füge einige hinzu!</p>";
         }        
 
+
+        
         loadTodoItems();
     });
 

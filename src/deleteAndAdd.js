@@ -3,6 +3,7 @@ import { editTask } from "./edit";
 import { saveToLocalStorage } from "./localStorage";
 
 export function addInput (){
+
     
     // Inhalt aus dem  Eingabefeld ToDo Listen Container werden geholt
     const inputValue = document.getElementById("task");
@@ -19,15 +20,28 @@ export function addInput (){
     const uniqueId = Date.now();
     createLiElm.id = `listElm-${uniqueId}`;
 
-    //Input Value wird in localStorage gespeichert
-    localStorage.setItem("inputValue", inputValue.value);
+    // Stelle sicher, dass 'inputValueArr' aus dem LocalStorage aktualisiert wird
+    let inputValueArr = JSON.parse(localStorage.getItem('inputValueArr')) || [];
+    
+
     if ("fromForm") {
+
+        //Objekt für den Input Eintrag
+        const newTask = {
+            id: uniqueId,
+            title: inputValue.value,
+            date: taskDate.value,
+            details: taskDetail.value
+        };
     
 
     // Listenelement li = Input Value
     createLiElm.textContent = `${inputValue.value}-${taskDate.value}`;
     listTodo.appendChild(createLiElm);
-    saveToLocalStorage(createLiElm.innerHTML);
+
+    //Das Objekt wird in das Array hinzugefügt und anschließend in den localStorage
+    inputValueArr.push(newTask);
+    localStorage.setItem('inputValueArr', JSON.stringify(inputValueArr));
     
     
     //Eingabefeld wird geleert
@@ -59,6 +73,8 @@ export function addInput (){
         const currentContent = listTodo.innerHTML;
         saveToLocalStorage(currentContent);
     }
+
+
     DeleteButton(createLiElm);
     editTask(`listElm-${uniqueId}`);
     detailsButton (`listElm-${uniqueId}`);

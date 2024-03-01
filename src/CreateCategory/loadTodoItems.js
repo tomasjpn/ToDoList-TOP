@@ -1,23 +1,14 @@
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 
 
-let todosItems = loadFromLocalStorage();
+let todosItems = loadFromLocalStorage() || [];
 export function loadTodoItems () {
-    
 
-    //Die InputWerte des Eintrags werden in einem Objekt gespeichert
-    const todoItemsObj = {
-        id: Date.now(),
-        title: localStorage.getItem("inputValue"), //Zuvor gespeicherter Input Value aus dem LocalStorage
-        details:document.getElementById("task-description").value,
-        date: document.getElementById("task-date").value
-    };
+    // das gespeicherte Array mit den Einträgen wird aus dem localStorage geholt
+    const storedItems = localStorage.getItem("inputValueArr");
+    const todosItemsInput = storedItems ? JSON.parse(storedItems) : [];
 
-    // das todoItemObjekt wird in das Array hinzugefügt
-    todosItems.push(todoItemsObj);
-    saveToLocalStorage(todosItems); //Das Array wird schließlich in den LocalStorage gespeichert 
-
-    refreshTodos(todosItems); //Function, die die Todo Liste neu aufbaut
+    refreshTodos(todosItemsInput); // Funktion, die die Todo-Liste neu aufbaut
 }
 
 export function refreshTodos(todosItemsInput) {
@@ -91,17 +82,8 @@ export function refreshTodos(todosItemsInput) {
         refreshTodos(todosItems);
         }
 
-        saveChangesBtn.addEventListener("click", saveChanges);
-        
-        inputField.addEventListener("keydown",(event)=>{
-            if(event.key ==="Enter"){
-                saveChanges();
-                
-            }
-        })
 
-        
-
+    
         // Event Listener für save changes button
         saveChangesBtn.addEventListener("click", saveChanges);
 
@@ -139,6 +121,7 @@ export function refreshTodos(todosItemsInput) {
         descriptionDisplay.style.display = "none"; // Versteckt das Anzeigeelement anfangs;
         item.appendChild(descriptionDisplay);
 
+
         // Mehr Details Button
         const descriptionBtn = document.createElement("button");
         descriptionBtn.textContent = "Details";
@@ -154,6 +137,8 @@ export function refreshTodos(todosItemsInput) {
 
 
         });
+
+
         item.appendChild(descriptionBtn);
 
         todoList.appendChild(item);
