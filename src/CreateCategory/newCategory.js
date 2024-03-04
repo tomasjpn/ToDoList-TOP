@@ -1,4 +1,5 @@
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
+import { loadTodoItems } from "./loadTodoItems";
 
 
 
@@ -36,6 +37,11 @@ export function createCategory() {
 
                     event.preventDefault();
                     document.getElementById("todo-list").innerHTML ="";
+
+                    const currentCategory = newCategoryBtn.textContent;
+                    // Speichern der aktuellen Kategorie im localStorage für die Persistenz
+                    localStorage.setItem('currentCategory', currentCategory);
+                    loadTodoItems(currentCategory);
                     
 
                 });
@@ -69,9 +75,13 @@ export function createCategory() {
                     event.preventDefault();
 
                     document.getElementById("todo-list").innerHTML ="";
+
+                    const currentCategory = newCategoryBtn.textContent;
+                    localStorage.setItem("currentCategory", currentCategory);
+                    loadTodoItems(currentCategory);
                     
                     // Input-Felder leeren
-                    nameCategoryInput.value = ''; 
+                    //nameCategoryInput.value = ''; 
                 });
 
                 // Fügt den neuen Kategorie-Button neben dem Home-Button ein

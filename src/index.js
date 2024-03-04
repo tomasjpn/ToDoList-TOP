@@ -1,5 +1,5 @@
 import { homePage } from "./CreateCategory/homePage";
-import { refreshTodos } from "./CreateCategory/loadTodoItems";
+import { loadTodoItems, refreshTodos } from "./CreateCategory/loadTodoItems";
 import { createCategory } from "./CreateCategory/newCategory";
 import { addInput } from "./deleteAndAdd";
 import { displayAddTask } from "./displayAddTask";
@@ -12,6 +12,10 @@ addTaskForm.addEventListener("submit", (event) => {
     addInput(true);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const currentCategory = localStorage.getItem('currentCategory') || "HomePage";
+    loadTodoItems(currentCategory);
+  });
 //gespeicherter Zustand wird automatisch geladen, wenn die Seite neu geladen bzw. gespeichert
 document.addEventListener("DOMContentLoaded", function (){
     const savedContent = loadFromLocalStorage();
@@ -31,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function (){
         console.log("Keine gespeicherten Todos gefunden oder ungültiges Format.");
     }
 })
+
+
 
 
 displayAddTask();

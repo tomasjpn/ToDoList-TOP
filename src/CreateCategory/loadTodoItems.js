@@ -1,19 +1,34 @@
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 
 
-let todosItems = loadFromLocalStorage() || [];
-export function loadTodoItems () {
 
-    // das gespeicherte Array mit den Einträgen wird aus dem localStorage geholt
+export function loadTodoItems (category = "") {
+
+    // das gespeicherte Array mit den Einträgen wird aus dem localStorage
     const storedItems = localStorage.getItem("inputValueArr");
     const todosItemsInput = storedItems ? JSON.parse(storedItems) : [];
 
-    refreshTodos(todosItemsInput); // Funktion, die die Todo-Liste neu aufbaut
+    let filteredItems = todosItemsInput;
+
+    //
+    if (category) {
+        // Kategorie wird gefiltert, also nur ToDo Einträge der entsprechenden Kategorie werden behalten
+        filteredItems = todosItemsInput.filter(todo => todo.category === category);
+      }
+
+    // Nur wenn gültige Einträge vorhanden sind, wird die Todo-Liste aktualisiert
+    if (Array.isArray(filteredItems) && filteredItems.length > 0) {
+        refreshTodos(filteredItems); // Funktion, die die Todo-Liste neu aufbaut
+    }
 }
 
 export function refreshTodos(todosItemsInput) {
     const todoList = document.getElementById("todo-list");
     todoList.innerHTML = "";
+
+    if(!Array.isArray(todosItemsInput)){
+        todosItemsInput = []; // Initialisiere als leeres Array, wenn kein Array übergeben wird
+    }
 
 
     // Überprüfe, ob todosItemsInput ein Array ist
@@ -64,22 +79,31 @@ export function refreshTodos(todosItemsInput) {
         item.appendChild(saveChangesBtn);
 
         function saveChanges() {
-        // Update todo item mit neuen Values
-        todo.title = inputField.value.trim();
-        todo.details = inputFieldDetail.value.trim();
-        todo.date = inputFieldDate.value.trim();
 
-        // Der alte Inhalt wird durch den neuen Inhalt ersetzt
-        item.textContent = todo.title;
-        item.textContent += " " + todo.details;
-        item.textContent += " " + todo.date;
+        // Lädt das aktuelle Array aus dem localStorage
+        let inputValueArr = JSON.parse(localStorage.getItem('inputValueArr')) || [];
 
-        // Speichern der updated data in Local Storage
-        const updatedTodos = todosItems.map(t => t.id === todo.id ? todo : t);
-        saveToLocalStorage(updatedTodos);
+        const todoIndex = inputValueArr.findIndex(task => task.id === todo.id);
+        if (todoIndex !==-1){
+            // Der alte Inhalt wird durch den neuen Inhalt ersetzt
+            inputValueArr[todoIndex].title = inputField.value.trim();
+            inputValueArr[todoIndex].details = inputFieldDetail.value.trim();
+            inputValueArr[todoIndex].date = inputFieldDate.value;
+        }
 
-        // Rebuild von der  Liste mit updated data
-        refreshTodos(todosItems);
+        // Speichert das aktualisierte Array zurück in den localStorage
+        localStorage.setItem('inputValueArr', JSON.stringify(inputValueArr));
+
+        // Aktualisiert die Anzeige der geänderten Werten
+        item.textContent = inputValueArr[todoIndex].title;
+        item.textContent += " " + inputValueArr[todoIndex].details;
+        item.textContent += " " + inputValueArr[todoIndex].date;
+
+        // Buttons für Bearbeiten, Mehr Details und Löschen werden wieder hinzugefügt
+        item.appendChild(deleteBtn);
+        item.appendChild(editBtn);
+        item.appendChild(descriptionBtn);
+
         }
 
 
@@ -87,12 +111,18 @@ export function refreshTodos(todosItemsInput) {
         // Event Listener für save changes button
         saveChangesBtn.addEventListener("click", saveChanges);
 
-        // Event Listener für Enter key press für save changes
-         inputField.addEventListener("keydown", function(event) {
+        // Funktion, um die Änderungen zu speichern, wenn die Enter-Taste gedrückt wird
+        function handleEnterKeyPress(event) {
         if (event.key === "Enter") {
-            saveChanges();
+           saveChanges();
+         }
         }
-           });
+        // Fügt den Event-Listener zu allen drei Eingabefeldern hinzu
+        inputField.addEventListener("keydown", handleEnterKeyPress);
+        inputFieldDetail.addEventListener("keydown", handleEnterKeyPress);
+        inputFieldDate.addEventListener("keydown", handleEnterKeyPress);
+
+
         });
 
         item.appendChild(editBtn);
@@ -103,8 +133,16 @@ export function refreshTodos(todosItemsInput) {
        
         deleteBtn.addEventListener("click", function(){
             todoList.removeChild(item);
-            todosItems = todosItems.filter(t => t.id !== todo.id);
-            saveToLocalStorage(todosItems); // Speichere das aktualisierte Array im LocalStorage
+            
+        // Lädt das aktuelle Array aus dem localStorage
+        let inputValueArr = JSON.parse(localStorage.getItem('inputValueArr')) || [];
+
+        // Entfernt das Element mit der entsprechenden taskId aus dem Array
+        inputValueArr = inputValueArr.filter(task => task.id !== todo.id);
+
+        // Speichert das aktualisierte Array zurück in den localStorage
+        localStorage.setItem('inputValueArr', JSON.stringify(inputValueArr));
+
 
         })
         item.appendChild(deleteBtn);
