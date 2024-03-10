@@ -6,6 +6,12 @@ export function addInput (){
 
     let currentCategory = localStorage.getItem('currentCategory') || localStorage.getItem("homePage");
     
+    // Wenn currentCategory nicht gesetzt ist, setze es auf "HomePage"
+    if (!currentCategory) {
+        currentCategory = "HomePage";
+        localStorage.setItem("currentCategory", currentCategory);
+    }
+    
     // Inhalt aus dem  Eingabefeld ToDo Listen Container werden geholt
     const inputValue = document.getElementById("task");
     const listTodo = document.getElementById("todo-list");

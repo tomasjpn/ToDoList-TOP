@@ -13,6 +13,11 @@ addTaskForm.addEventListener("submit", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Wenn currentCategory nicht gesetzt ist, setze es auf "HomePage"
+    if (!currentCategory) {
+        currentCategory = "HomePage";
+        localStorage.setItem("currentCategory", currentCategory);
+    }
     const currentCategory = localStorage.getItem('currentCategory') || "HomePage";
     loadTodoItems(currentCategory);
   });
@@ -42,5 +47,3 @@ document.addEventListener("DOMContentLoaded", function (){
 displayAddTask();
 createCategory();
 homePage();
-
-
