@@ -13,8 +13,11 @@ export function createCategory() {
         // Input-Feld erstellen
         const nameCategoryInput = document.createElement("input");
         nameCategoryInput.type = "text";
-        nameCategoryInput.placeholder = "Name der Category";
+        nameCategoryInput.placeholder = "Name der Kategorie";
         nameCategoryInput.id = `category-${uniqueId}`;
+
+        nameCategoryInput.classList.add("category-input");
+        
 
         // Fügt das Input-Feld direkt nach dem Add-Category-Button ein
         addButton.parentNode.insertBefore(nameCategoryInput, addButton.nextSibling);
@@ -25,13 +28,17 @@ export function createCategory() {
         saveAddButton.id = `saveAddButton-${uniqueId}`;
         saveAddButton.textContent = "Bestätigen";
         addButton.parentNode.insertBefore(saveAddButton, nameCategoryInput.nextSibling);
+        saveAddButton.classList.add("saveAddButton");
         saveAddButton.addEventListener("click", function() {
+            
 
             // Stellt sicher, dass nameCategoryInput nicht leer ist
             if (nameCategoryInput.value.trim() !== "") {
                 const newCategoryBtn = document.createElement("button");
                 newCategoryBtn.textContent = nameCategoryInput.value;
                 newCategoryBtn.id = `categoryBtn-${uniqueId}`;
+
+                newCategoryBtn.classList.add("category-button"); // Wird der Klasse entsprechneden Klasse hinzugefügt
         
                 newCategoryBtn.addEventListener("click", function(event) {
 

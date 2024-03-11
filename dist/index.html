@@ -8,16 +8,24 @@
 <body>
     <!--Buttons für Ordner Tasks-->
     <header>
-        <nav>
-            <button id="home-Btn">Home</button>
-            <button id="addCategory-Btn">+</button>
-        </nav>
     </header>
 
 
     <div id="app">
-        <!-- Button für das Anzeigen des Angabefelds-->
+        <!--Container für die ToDo Liste-->
+        <div id="todo-list-container">
+            <h1>ToDo List</h1>
+            
+            <nav>
+                <button id="home-Btn">Home</button>
+                <button id="addCategory-Btn">+</button>
+            </nav>
+            <!-- Button für das Anzeigen des Angabefelds-->
         <button id="show-input-btn">Neue Aufgabe hinzufügen</button>
+            <ul id="todo-list">
+
+            </ul>
+        </div>
 
         <!--Container  für das Eingabefeld und den Button-->
         <div id="input-container" style="display: none">
@@ -26,14 +34,6 @@
                 <input type="text" id="task" name="task"required placeholder="Titel">
                 <button type="submit">Hinzufügen</button>
             </form>
-        </div>
-
-        <!--Container für die ToDo Liste-->
-        <div id="todo-list-container">
-            <h2>ToDo List</h2>
-            <ul id="todo-list">
-
-            </ul>
         </div>
     </div>
 

@@ -10,8 +10,8 @@ export const editTask = (elementId)=>{
 
     //Funktion für den Edit Button
     editBtn.addEventListener("click", ()=>{
+        const todoList = document.getElementById("todo-list");
 
-        const currentTask = listElm.textContent.trim();
 
         //Input Feld (Titel, Details, Datum) für Edit Button
         const inputField = document.createElement("input");
@@ -54,19 +54,72 @@ export const editTask = (elementId)=>{
             listElm.textContent += " " + newDetail;
             listElm.textContent += " " + newDate;
 
+            listElm.appendChild(editBtn);
+
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+       
+        deleteBtn.addEventListener("click", function(){
+            todoList.removeChild(listElm);
             
+        // Lädt das aktuelle Array aus dem localStorage
+        let inputValueArr = JSON.parse(localStorage.getItem('inputValueArr')) || [];
+
+        // Entfernt das Element mit der entsprechenden taskId aus dem Array
+        inputValueArr = inputValueArr.filter(task => task.id !== todo.id);
+
+        // Speichert das aktualisierte Array zurück in den localStorage
+        localStorage.setItem('inputValueArr', JSON.stringify(inputValueArr));
+
+
+        })
+            listElm.appendChild(deleteBtn);
+
+
+
+
+            // Erstellt ein Element zur Anzeige der Details
+        const descriptionDisplay = document.createElement("span"); 
+        descriptionDisplay.id = "description-display"
+        
+        descriptionDisplay.style.display = "none"; // Versteckt das Anzeigeelement anfangs;
+        listElm.appendChild(descriptionDisplay);
+
+
+        // Mehr Details Button
+        const descriptionBtn = document.createElement("button");
+        descriptionBtn.textContent = "Details";
+        descriptionBtn.addEventListener("click",()=>{
+            if (descriptionDisplay.style.display === "none") {
+                descriptionDisplay.textContent = inputFieldDetail.value; // Text Content wird auf den eingegeben Todo Eintrag gestzt
+                descriptionDisplay.style.display = "block";
+                descriptionBtn.textContent = "Weniger anzeigen" // Zeigt die Details an
+            } else {
+                descriptionDisplay.style.display = "none";
+                descriptionBtn.textContent = "Mehr Details" // Versteckt die Details wieder
+            }
+
+
+        });
+
+        listElm.appendChild(descriptionBtn);
 
         }
 
-        // Speicherbutton angedrückt -> function saveChanges
-        saveChangesBtn.addEventListener("click", saveChanges);
-        // Eingabefeld bei Betätigen vom Enter -> function saveChanges
-        inputField.addEventListener("keydown",(event)=>{
-            if (event.key === "Enter") {
-                saveChanges();
-            }
+    // Event Listener für save changes button
+    saveChangesBtn.addEventListener("click", saveChanges);
 
-        });
+    // Funktion, um die Änderungen zu speichern, wenn die Enter-Taste gedrückt wird
+    function handleEnterKeyPress(event) {
+    if (event.key === "Enter") {
+        saveChanges();
+     }
+    }
+    // Fügt den Event-Listener zu allen drei Eingabefeldern hinzu
+    inputField.addEventListener("keydown", handleEnterKeyPress);
+    inputFieldDetail.addEventListener("keydown", handleEnterKeyPress);
+    inputFieldDate.addEventListener("keydown", handleEnterKeyPress);
     });
     //Edit button wird hinzugefügt zur der Liste
     listElm.appendChild(editBtn);

@@ -50,6 +50,8 @@ export function refreshTodos(todosItemsInput) {
         const editBtn = document.createElement("button");
         editBtn.textContent = "Bearbeiten";
 
+        editBtn.classList.add("editBtn");
+
         editBtn.addEventListener("click", function() {
         // Input-Felder für EIntrag, Datum und Details
         const inputField = document.createElement("input");
@@ -67,6 +69,10 @@ export function refreshTodos(todosItemsInput) {
         inputFieldDetail.value = todo.details;
         inputFieldDetail.placeholder = "Details";
 
+        inputField.classList.add("category-input"); 
+        inputFieldDate.classList.add("category-input");
+        inputFieldDetail.classList.add("category-input");
+
         // Derzeitiger Inhalt wird mit neuen Content ersetzt
         item.innerHTML = ""; // Existierenden Inhalt leeren
         item.appendChild(inputField);
@@ -77,6 +83,8 @@ export function refreshTodos(todosItemsInput) {
         const saveChangesBtn = document.createElement("button");
         saveChangesBtn.textContent = "Speichern";
         item.appendChild(saveChangesBtn);
+
+        saveChangesBtn.classList.add("saveAddButton")
 
         function saveChanges() {
 
@@ -130,6 +138,8 @@ export function refreshTodos(todosItemsInput) {
 
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
+
+        deleteBtn.classList.add("deleteButton");
        
         deleteBtn.addEventListener("click", function(){
             todoList.removeChild(item);
@@ -163,6 +173,8 @@ export function refreshTodos(todosItemsInput) {
         // Mehr Details Button
         const descriptionBtn = document.createElement("button");
         descriptionBtn.textContent = "Details";
+
+        descriptionBtn.classList.add("descriptionBtn");
         descriptionBtn.addEventListener("click",()=>{
             if (descriptionDisplay.style.display === "none") {
                 descriptionDisplay.textContent = todo.details; // Text Content wird auf den eingegeben Todo Eintrag gestzt

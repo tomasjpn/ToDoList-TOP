@@ -4,6 +4,7 @@ import { createCategory } from "./CreateCategory/newCategory";
 import { addInput } from "./deleteAndAdd";
 import { displayAddTask } from "./displayAddTask";
 import { loadFromLocalStorage } from "./localStorage";
+import "../dist/styles.css";
 
 // Wenn der Submit Button betätigt wird, dann soll addInput Funktion aufgerufen werden
 const addTaskForm = document.getElementById("add-task-form");
@@ -13,12 +14,12 @@ addTaskForm.addEventListener("submit", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+    const currentCategory = localStorage.getItem('currentCategory') || "HomePage";
     // Wenn currentCategory nicht gesetzt ist, setze es auf "HomePage"
     if (!currentCategory) {
         currentCategory = "HomePage";
         localStorage.setItem("currentCategory", currentCategory);
     }
-    const currentCategory = localStorage.getItem('currentCategory') || "HomePage";
     loadTodoItems(currentCategory);
   });
 //gespeicherter Zustand wird automatisch geladen, wenn die Seite neu geladen bzw. gespeichert
