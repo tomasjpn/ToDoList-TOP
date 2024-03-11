@@ -1,0 +1,161 @@
+/* CSS für den Titel */
+h1 {
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#todo-list-container{
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Neue Aufgabe hinzufügen - Button*/
+#show-input-btn {
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 20px; /* Erhöht den Innenabstand */
+    font-size: 15px; /* Vergrößert die Schrift */
+    
+    border-radius: 30px;
+    border: none;
+}
+
+#app {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* +  - Button*/
+#addCategory-Btn {
+    margin: 0 15px;
+    border-radius: 40px;
+    border: none;
+
+    padding: 10px 20px; /* Erhöht den Innenabstand */
+    font-size: 15px; /* Vergrößert die Schrift */
+
+    cursor: pointer;
+    
+}
+/* Home - Button*/
+#home-Btn{
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 10px 20px; /* Erhöht den Innenabstand */
+    font-size: 15px; /* Vergrößert die Schrift */
+    cursor: pointer;
+}
+
+#category{
+    margin: 0 10px;
+
+}
+/*Neue Kategorien - Button*/
+.category-button {
+    border-radius: 15px; /* Abrunden der Ecken */
+    margin: 0 5px;
+    border: none; /* Seitenabstand */
+    /* Weitere Stile nach Bedarf */
+
+
+    padding: 10px 20px; /* Erhöht den Innenabstand */
+    font-size: 15px; /* Vergrößert die Schrift */
+
+    cursor: pointer;
+}
+
+.category-input{
+    padding: 10px; /* Fügt Innenabstand hinzu */
+    margin: 5px 0; /* Fügt Außenabstand oben und unten hinzu */
+    border-radius: 15px; /* Abrunden der Ecken */
+    border: 1px solid #ccc; /* Definiert eine Grenze */
+    font-size: 15px; /* Vergrößert die Schriftgröße */
+}
+
+.saveAddButton {
+
+    background-color: orange; /* Grüner Hintergrund */
+    color: white; /* Weiße Schrift */
+    padding: 10px 20px; /* Polsterung um den Text */
+    border: none; /* Keine Grenze */
+    border-radius: 15px; /* Ecken abrunden */
+    cursor: pointer; /* Cursor beim Überfahren */
+    font-size: 15px;
+    
+    margin: 0 5px;
+
+}
+
+.deleteButton {
+    background-color: orange; /* Grüner Hintergrund */
+    color: white; /* Weiße Schrift */
+    padding: 8px 10px; /* Polsterung um den Text */
+    border: none; /* Keine Grenze */
+    border-radius: 15px; /* Ecken abrunden */
+    cursor: pointer; /* Cursor beim Überfahren */
+    font-size: 10px;
+    
+    margin: 15 10px;
+
+}
+
+.editBtn {
+    background-color: orange; /* Grüner Hintergrund */
+    color: white; /* Weiße Schrift */
+    padding: 8px 10px; /* Polsterung um den Text */
+    border: none; /* Keine Grenze */
+    border-radius: 15px; /* Ecken abrunden */
+    cursor: pointer; /* Cursor beim Überfahren */
+    font-size: 10px;
+    
+    margin: 15 10px;
+
+}
+
+.descriptionBtn{
+    background-color: orange; /* Grüner Hintergrund */
+    color: white; /* Weiße Schrift */
+    padding: 8px 10px; /* Polsterung um den Text */
+    border: none; /* Keine Grenze */
+    border-radius: 15px; /* Ecken abrunden */
+    cursor: pointer; /* Cursor beim Überfahren */
+    font-size: 10px;
+    
+    margin: 15 10px;
+
+
+}
+
+#todo-list {
+    margin-top: 10px; /* Fügt oben Abstand hinzu */
+    margin-bottom: 10px; /* Fügt unten Abstand hinzu */
+    padding: 10px; /* Optional: Fügt Innenabstand hinzu für mehr Platz innerhalb des Eintrags */
+    background-color: #f0f0f0; /* Optional: Hintergrundfarbe für bessere Sichtbarkeit */
+    border-radius: 15px; /* Optional: Abrunden der Ecken */
+}
