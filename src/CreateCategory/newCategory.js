@@ -75,6 +75,7 @@ export function createCategory() {
                 const newCategoryBtn = document.createElement("button");
                 newCategoryBtn.textContent = e.target.value;
                 newCategoryBtn.id = `categoryBtn-${uniqueId}`;
+                newCategoryBtn.classList.add("category-button");
 
                 // Ereignisbehandler für den neuen Kategorie-Button hinzufügen
                 newCategoryBtn.addEventListener("click", function(event) {

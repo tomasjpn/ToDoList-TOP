@@ -42,7 +42,34 @@ export function refreshTodos(todosItemsInput) {
     // Iterriert über das Array und fügt ein li - Element mit dem Titel und Datum
     todosItemsInput.forEach((todo) =>{
         const item = document.createElement("li");
-        item.textContent = `${todo.title} - ${todo.date}`;
+
+        item.classList.add("todo-item");
+
+        //checkbox
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("todo-checkbox");
+        checkbox.checked = todo.checked; // Checkbox Status wird wiederherstellt
+        checkbox.addEventListener("change", function(){
+        
+        // Suchen des Index des Todo-Objekts im Array anhand der ID
+        const todoIndex = todosItemsInput.findIndex(todo => todo.id === todo.id);
+        if (todoIndex !== -1) {
+
+        // Aktualisieren des Checkbox-Status im Array
+        todosItemsInput[todoIndex].checked = checkbox.checked;
+
+        // Speichern des aktualisierten Arrays im localStorage
+        saveToLocalStorage(todosItemsInput);
+
+        }})
+        item.appendChild(checkbox);
+
+        //Todo-Einträge
+        const inputText = document.createElement("span");
+        inputText.textContent = `${todo.title} - ${todo.date}`;
+        item.appendChild(inputText);
+
 
         // fügt in die Todo-Liste ein
         todoList.appendChild(item);
