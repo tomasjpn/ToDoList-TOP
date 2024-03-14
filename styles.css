@@ -18,6 +18,7 @@ h1 {
 }
 
 #input-container {
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -138,7 +139,7 @@ h1 {
 
 }
 
-.descriptionBtn{
+.descriptionBtn, #description-btn, #submit-btn, #deleteTask-btn, #editBtn{
     background-color: orange; /* Grüner Hintergrund */
     color: white; /* Weiße Schrift */
     padding: 8px 10px; /* Polsterung um den Text */
@@ -158,4 +159,44 @@ h1 {
     padding: 10px; /* Optional: Fügt Innenabstand hinzu für mehr Platz innerhalb des Eintrags */
     background-color: #f0f0f0; /* Optional: Hintergrundfarbe für bessere Sichtbarkeit */
     border-radius: 15px; /* Optional: Abrunden der Ecken */
+    display: flex; /* Verwendet Flexbox */
+    flex-direction: column; /* Stellt sicher, dass die Einträge in einer Spalte angezeigt werden */
+    align-items: flex-start; /* Linksbündige Ausrichtung der Einträge */
+}
+
+#task, #task-date, #task-description {
+    padding: 10px; /* Fügt Innenabstand hinzu */
+    margin: 5px 0; /* Fügt Außenabstand oben und unten hinzu */
+    border-radius: 15px; /* Abrunden der Ecken */
+    border: 1px solid #ccc; /* Definiert eine Grenze */
+    font-size: 15px; /* Vergrößert die Schriftgröße */
+
+}
+
+
+input[type="checkbox"] {
+    /* Hier kannst du die gewünschten Stile für die Checkbox festlegen */
+    /* Zum Beispiel: */
+    width: 20px; /* Breite der Checkbox */
+    height: 20px; /* Höhe der Checkbox */
+    margin-right: 5px; /* Abstand zwischen Checkbox und benachbarten Elementen */
+    /* Weitere Stile nach Bedarf */
+  }
+  
+  /* Wenn du die Checkbox unter bestimmten Bedingungen stylen möchtest, kannst du auch Pseudoklassen wie :checked verwenden */
+  input[type="checkbox"]:checked {
+    /* Hier kannst du die Stile für die angeklickte Checkbox festlegen */
+    /* Zum Beispiel: */
+    background-color: #007bff; /* Hintergrundfarbe, wenn die Checkbox ausgewählt ist */
+    /* Weitere Stile nach Bedarf */
+  }
+
+  .todo-item {
+    display: flex; /* Verwendet Flexbox */
+    align-items: center; /* Zentriert die Elemente vertikal */
+
+  }
+
+  .todo-checkbox {
+    margin-right: 5px; /* Fügt einen Abstand zwischen Checkbox und Text hinzu */
 }
