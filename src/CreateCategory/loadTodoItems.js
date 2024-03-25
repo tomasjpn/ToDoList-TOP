@@ -26,11 +26,6 @@ export function refreshTodos(todosItemsInput) {
     const todoList = document.getElementById("todo-list");
     todoList.innerHTML = "";
 
-    if(!Array.isArray(todosItemsInput)){
-        todosItemsInput = []; // Initialisiere als leeres Array, wenn kein Array übergeben wird
-    }
-
-
     // Überprüfe, ob todosItemsInput ein Array ist
     if (!Array.isArray(todosItemsInput)) {
         todosItemsInput = [];
@@ -53,15 +48,14 @@ export function refreshTodos(todosItemsInput) {
         checkbox.addEventListener("change", function(){
         
         // Suchen des Index des Todo-Objekts im Array anhand der ID
-        const todoIndex = todosItemsInput.findIndex(todo => todo.id === todo.id);
+        const todoIndex = todosItemsInput.findIndex(item => item.id === todo.id);
         if (todoIndex !== -1) {
 
         // Aktualisieren des Checkbox-Status im Array
         todosItemsInput[todoIndex].checked = checkbox.checked;
 
         // Speichern des aktualisierten Arrays im localStorage
-        saveToLocalStorage(todosItemsInput);
-
+        localStorage.setItem('inputValueArr', JSON.stringify(todosItemsInput));
         }})
         item.appendChild(checkbox);
 
