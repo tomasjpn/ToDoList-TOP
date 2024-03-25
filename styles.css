@@ -40,6 +40,9 @@ h1 {
     
     border-radius: 30px;
     border: none;
+
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #app {
@@ -60,6 +63,7 @@ h1 {
     font-size: 15px; /* Vergrößert die Schrift */
 
     cursor: pointer;
+    transition: background-color 0.3s;
     
 }
 /* Home - Button*/
@@ -71,7 +75,9 @@ h1 {
     padding: 10px 20px; /* Erhöht den Innenabstand */
     font-size: 15px; /* Vergrößert die Schrift */
     cursor: pointer;
+    transition: background-color 0.3s;
 }
+
 
 #category{
     margin: 0 10px;
@@ -89,7 +95,47 @@ h1 {
     font-size: 15px; /* Vergrößert die Schrift */
 
     cursor: pointer;
+    transition: background-color 0.3s;
 }
+
+/* Hover Animationen */
+#home-Btn:hover {
+    background-color: #D3D3D3; 
+    color: white; 
+
+
+}
+
+#addCategory-Btn:hover {
+
+    background-color: #D3D3D3; 
+    color: white; 
+
+}
+
+.category-button:hover{
+    background-color: #D3D3D3; 
+    color: white; 
+
+}
+
+#show-input-btn:hover {
+    background-color: #D3D3D3; 
+    color: white; 
+
+}
+
+#submit-btn:hover{
+    background-color: #ffcf76; 
+    color: white; 
+}
+
+.saveAddButton:hover {
+    background-color: #ffcf76; 
+    color: white; 
+
+}
+
 
 .category-input{
     padding: 10px; /* Fügt Innenabstand hinzu */
@@ -97,6 +143,7 @@ h1 {
     border-radius: 15px; /* Abrunden der Ecken */
     border: 1px solid #ccc; /* Definiert eine Grenze */
     font-size: 15px; /* Vergrößert die Schriftgröße */
+    
 }
 
 .saveAddButton {
@@ -111,7 +158,10 @@ h1 {
     
     margin: 0 5px;
 
+    transition: background-color 0.3s;
+
 }
+
 
 .deleteButton {
     background-color: orange; /* Grüner Hintergrund */
@@ -139,19 +189,20 @@ h1 {
 
 }
 
-.descriptionBtn, #description-btn, #submit-btn, #deleteTask-btn, #editBtn{
+.descriptionBtn, #description-btn, #deleteTask-btn, #editBtn{
     background-color: orange; /* Grüner Hintergrund */
     color: white; /* Weiße Schrift */
-    padding: 8px 10px; /* Polsterung um den Text */
+    padding: 8px 16px; /* Polsterung um den Text */
+
+    margin: 5px 2px;
     border: none; /* Keine Grenze */
     border-radius: 15px; /* Ecken abrunden */
     cursor: pointer; /* Cursor beim Überfahren */
     font-size: 10px;
-    
-    margin: 15 10px;
 
 
 }
+
 
 #todo-list {
     margin-top: 10px; /* Fügt oben Abstand hinzu */
@@ -164,26 +215,38 @@ h1 {
     align-items: flex-start; /* Linksbündige Ausrichtung der Einträge */
 }
 
-#task, #task-date, #task-description {
+#task, #task-date, #task-description, #submit-btn {
     padding: 10px; /* Fügt Innenabstand hinzu */
-    margin: 5px 0; /* Fügt Außenabstand oben und unten hinzu */
+    margin: 5px 2px; /* Fügt Außenabstand oben und unten hinzu */
     border-radius: 15px; /* Abrunden der Ecken */
     border: 1px solid #ccc; /* Definiert eine Grenze */
     font-size: 15px; /* Vergrößert die Schriftgröße */
 
 }
 
+#submit-btn{
+    background-color: #ffa500; /* Grüner Hintergrund */
+    color: white; /* Weiße Schrift */
+    cursor: pointer; /* Cursor beim Überfahren */
+    transition: background-color 0.3s;
+
+}
+
+
+
+
+
+
+
+  /* Checkbox*/
 
 input[type="checkbox"] {
-    /* Hier kannst du die gewünschten Stile für die Checkbox festlegen */
-    /* Zum Beispiel: */
     width: 20px; /* Breite der Checkbox */
     height: 20px; /* Höhe der Checkbox */
     margin-right: 5px; /* Abstand zwischen Checkbox und benachbarten Elementen */
     /* Weitere Stile nach Bedarf */
   }
   
-  /* Wenn du die Checkbox unter bestimmten Bedingungen stylen möchtest, kannst du auch Pseudoklassen wie :checked verwenden */
   input[type="checkbox"]:checked {
     /* Hier kannst du die Stile für die angeklickte Checkbox festlegen */
     /* Zum Beispiel: */
@@ -200,3 +263,4 @@ input[type="checkbox"] {
   .todo-checkbox {
     margin-right: 5px; /* Fügt einen Abstand zwischen Checkbox und Text hinzu */
 }
+
