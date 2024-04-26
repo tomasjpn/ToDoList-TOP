@@ -197,13 +197,53 @@ export function refreshTodos(todosItemsInput) {
 
         descriptionBtn.classList.add("descriptionBtn");
         descriptionBtn.addEventListener("click",()=>{
-            if (descriptionDisplay.style.display === "none") {
+
+            descriptionDisplay.style.display = "block"; // Zeige das Detail-Element
+
+            const descriptionText = descriptionInput.value.trim(); // Text aus dem Input-Feld abrufen
+            if (descriptionText) {
                 descriptionDisplay.textContent = todo.details; // Text Content wird auf den eingegeben Todo Eintrag gestzt
-                descriptionDisplay.style.display = "block";
-                descriptionBtn.textContent = "Weniger anzeigen" // Zeigt die Details an
-            } else {
-                descriptionDisplay.style.display = "none";
-                descriptionBtn.textContent = "Mehr Details" // Versteckt die Details wieder
+    
+                // Erstelle das Overlay für den Fokus-Bereich
+                const overlay = document.createElement('div');
+                overlay.id = 'overlay';
+                document.body.appendChild(overlay);
+    
+                // Füge der body-Klasse 'blur-background' hinzu, um den Hintergrund zu verschwimmen
+                document.body.classList.add('blur-background');
+
+                setTimeout(() => {
+                    overlay.style.opacity = '1'; // Zeige das Overlay
+                    descriptionDisplay.style.opacity = '1'; // Zeige die Detailansicht
+                }, 10);
+
+
+                // Füge einen Eventlistener hinzu, um das Overlay zu entfernen
+            overlay.addEventListener('click', () => {
+                overlay.style.opacity = '0'; // Verstecke das Overlay
+                descriptionDisplay.style.opacity = '0'; // Verstecke die Detailansicht
+                setTimeout(() => {
+                    overlay.remove(); // Entferne das Overlay aus dem DOM
+                    // Entferne die 'blur-background' Klasse vom body, um den unscharfen Hintergrund zurückzusetzen
+                    document.body.classList.remove('blur-background');
+                }, 300); // Wartezeit für den Übergang, bevor das Overlay entfernt wird
+            });
+    
+                // Positioniere das Detail-Display zentriert auf dem Bildschirm
+                descriptionDisplay.style.position = 'fixed';
+                descriptionDisplay.style.top = '50%';
+                descriptionDisplay.style.left = '50%';
+                descriptionDisplay.style.transform = 'translate(-50%, -50%)';
+                descriptionDisplay.style.zIndex = '10000';
+                descriptionDisplay.style.display = 'block';
+    
+                // Füge einen Eventlistener hinzu, um das Overlay zu entfernen
+                overlay.addEventListener('click', () => {
+                    descriptionDisplay.style.display = 'none';
+                    overlay.remove();
+                    // Entferne die 'blur-background' Klasse vom body, um den unscharfen Hintergrund zurückzusetzen
+                    document.body.classList.remove('blur-background');
+                });
             }
 
 
