@@ -82,12 +82,14 @@ export function createCategory() {
                     // Verhindert das Standardverhalten (Seitenaktualisierung) des Buttons
                     event.preventDefault();
 
-                    //löscht den Inhalt
                     document.getElementById("todo-list").innerHTML ="";
 
                     const currentCategory = newCategoryBtn.textContent;
                     localStorage.setItem("currentCategory", currentCategory);
                     loadTodoItems(currentCategory);
+                    
+                    // Input-Felder leeren
+                    //nameCategoryInput.value = ''; 
                 });
 
                 // Fügt den neuen Kategorie-Button neben dem Home-Button ein
